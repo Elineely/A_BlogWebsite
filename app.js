@@ -18,15 +18,18 @@ app.use(express.static("public"));
 
 app.get("/", function(req, res){
   res.render("home", { pageTitle : "Home" , contents : homeStartingContent });
+
 });
 
 app.get("/about", function(req, res){
   res.render("home", { pageTitle : "About", contents : aboutContent });
+
 });
 
+app.get("/contact", function(req, res){
+  res.render("home", { pageTitle : "Contact", contents : contactContent });
 
-
-
+});
 
 
 

@@ -19,14 +19,23 @@ app.use(express.static("public"));
 
 
 app.get("/", function(req, res){
-  res.render("home", { startingContent : homeStartingContent });
+  res.render("home", { pageTitle : "Home", startingContent : homeStartingContent });
   console.log(posts);
 });
 
+app.get("/about", function(req, res){
+  res.render("home", { pageTitle : "About", startingContent : aboutContent });
+  console.log(posts);
+});
 
+app.get("/contact", function(req, res){
+  res.render("home", { pageTitle : "Contact", startingContent : contactContent });
+  console.log(posts);
+});
 
-
-
+app.get("/compose", function(req, res){
+  res.render("compose", {pageTitle : "Compose"});
+});
 
 
 

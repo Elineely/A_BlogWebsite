@@ -25,42 +25,19 @@ app.get("/", function(req, res){
     newPosts : posts });
 });
 
- app.get("/", function(req, res){
-   res.render("home", {
-     pageTitle : "Home",
-     startingContent : homeStartingContent,
-     newPosts : posts });
- });
-
  app.get("/about", function(req, res){
-   res.render("home", { pageTitle : "About",
+   res.render("about", { pageTitle : "About",
    startingContent : aboutContent });
  });
 
  app.get("/contact", function(req, res){
-   res.render("home", { pageTitle : "Contact",
+   res.render("about", { pageTitle : "Contact",
    startingContent : contactContent });
  });
 
  app.get("/compose", function(req, res){
   res.render("compose", {pageTitle : "Compose"});
 });
-
-app.get("/contact", function(req, res){
-  res.render("home", { pageTitle : "Contact",
-  startingContent : contactContent });
-});
-
-app.get("/compose", function(req, res){
-  res.render("compose", {pageTitle : "Compose"});
-});
-
-app.post("/compose", function(req, res){
-const post = {
-  title : req.body.newContentTitle,
-  content : req.body.newContent
-}
-
 
 app.post("/compose", function(req, res){
 
@@ -70,13 +47,17 @@ const post = {
 }
 
 posts.push(post);
-
 res.redirect("/");
 });
 
-
-
-
+//dynamic URL
+app.get("/posts/:title", function(req,res){
+  const routingTitle = req.params.title
+  for(var i = 0; i < posts.length; i++){
+    if(posts[i].title === routingTitle ){
+      console.log("matched!");};
+  };
+});
 
 
 app.listen(3000, function() {
